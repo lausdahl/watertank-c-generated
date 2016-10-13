@@ -17,6 +17,11 @@ FmiBuffer fmiBuffer;
 const fmi2CallbackFunctions *g_fmiCallbackFunctions;
 const char* g_fmiInstanceName;
 
+#ifdef _WIN32
+    // windows code goes here
+#define strdup _strdup
+#endif
+
 
 // ---------------------------------------------------------------------------
 // FMI functions
@@ -26,8 +31,8 @@ extern "C" fmi2Component fmi2Instantiate(fmi2String instanceName, fmi2Type fmuTy
 		fmi2Boolean loggingOn)
 {
 	g_fmiCallbackFunctions = functions;
-	std::string* f = new std::string(instanceName);
-	g_fmiInstanceName = f->c_str();
+	//std::string* f = new std::string(instanceName);
+	g_fmiInstanceName =strdup(instanceName);;
 	systemInit();
 
 	return (void*) 1;
@@ -62,6 +67,7 @@ extern "C" fmi2Status fmi2Reset(fmi2Component c)
 extern "C" void fmi2FreeInstance(fmi2Component c)
 {
 	systemDeInit();
+	delete (	g_fmiInstanceName);	g_fmiInstanceName=NULL;
 }
 
 // ---------------------------------------------------------------------------

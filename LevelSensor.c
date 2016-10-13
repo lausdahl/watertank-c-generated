@@ -33,11 +33,13 @@ static void LevelSensor_free(struct LevelSensor *this)
  --------------------------------- */
  
 /* LevelSensor.vdmrt 12:8 */
- static  TVP _Z8getLevelEV(LevelSensorCLASS this)	{
-/* LevelSensor.vdmrt 15:8 */
- TVP ret_7 = vdmClone(CALL_FUNC(RealPort, RealPort, GET_FIELD_PTR(LevelSensor, LevelSensor, this, port), CLASS_RealPort__Z8getValueEV));
-/* LevelSensor.vdmrt 15:1 */
-return ret_7;
+static  TVP _Z8getLevelEV(LevelSensorCLASS this)	{
+	/* LevelSensor.vdmrt 15:8 */
+	TVP h1 = GET_FIELD_PTR(LevelSensor, LevelSensor, this, port);
+	TVP ret_7 = CALL_FUNC(RealPort, RealPort, h1, CLASS_RealPort__Z8getValueEV);
+	/* LevelSensor.vdmrt 15:1 */
+	vdmFree(h1);
+	return ret_7;
 }
 
 
@@ -148,7 +150,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, LevelSensor);
 }
-;
+
 /* LevelSensor.vdmrt 10:24 */
  TVP field_tmp_3 = vdmClone(p);
 
@@ -173,7 +175,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, LevelSensor);
 }
-;
+
 
 return __buf;
 }

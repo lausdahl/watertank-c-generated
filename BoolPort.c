@@ -33,31 +33,31 @@ static void BoolPort_free(struct BoolPort *this)
  --------------------------------- */
  
 
- static  TVP _Z17fieldInitializer8EV()	{
-/* Fmi.vdmrt 48:18 */
- TVP ret_10 = vdmClone(newBool(false));
+static  TVP _Z17fieldInitializer8EV()	{
+	/* Fmi.vdmrt 48:18 */
+	TVP ret_10 =newBool(false);
 
-return ret_10;
+	return ret_10;
 }
 
 
 /* Fmi.vdmrt 54:12 */
- static  void _Z8setValueEB(BoolPortCLASS this, TVP v)	{
-/* Fmi.vdmrt 55:27 */
- TVP field_tmp_5 = vdmClone(v);
+static  void _Z8setValueEB(BoolPortCLASS this, TVP v)	{
+	/* Fmi.vdmrt 55:27 */
+	TVP field_tmp_5 = vdmClone(v);
 
-SET_FIELD_PTR(BoolPort, BoolPort, this, value, field_tmp_5);
+	SET_FIELD_PTR(BoolPort, BoolPort, this, value, field_tmp_5);
 
-vdmFree(field_tmp_5);
+	vdmFree(field_tmp_5);
 }
 
 
 /* Fmi.vdmrt 57:12 */
- static  TVP _Z8getValueEV(BoolPortCLASS this)	{
-/* Fmi.vdmrt 58:26 */
- TVP ret_11 = vdmClone(GET_FIELD_PTR(BoolPort, BoolPort, this, value));
-/* Fmi.vdmrt 58:19 */
-return ret_11;
+static  TVP _Z8getValueEV(BoolPortCLASS this)	{
+	/* Fmi.vdmrt 58:26 */
+	TVP ret_11 = GET_FIELD_PTR(BoolPort, BoolPort, this, value);
+	/* Fmi.vdmrt 58:19 */
+	return ret_11;
 }
 
 
@@ -90,11 +90,11 @@ return ;
 
 
 /* Fmi.vdmrt 12:12 */
- static  TVP Port__Z8getValueEV(PortCLASS base)	{
+static  TVP Port__Z8getValueEV(PortCLASS base)	{
 
- BoolPortCLASS this = CLASS_DOWNCAST(Port, BoolPort, base);
+	BoolPortCLASS this = CLASS_DOWNCAST(Port, BoolPort, base);
 
-return _Z8getValueEV(this);
+	return _Z8getValueEV(this);
 }
 
 
@@ -194,7 +194,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, BoolPort);
 }
-;
+
 /* Fmi.vdmrt 52:18 */
 CALL_FUNC_PTR(BoolPort, BoolPort, this, CLASS_BoolPort__Z8setValueEB, v);
 
@@ -217,7 +217,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, BoolPort);
 }
-;
+
 
 _Z4PortEV(((PortCLASS) CLASS_CAST(this, BoolPort, Port)));
 

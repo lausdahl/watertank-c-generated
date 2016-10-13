@@ -63,7 +63,7 @@ void syncOutputsToBuffers(){
 void periodic_taskg_WatertankSystem_controller__Z4loopEV()
 {
 	CALL_FUNC(Controller, Controller, g_WatertankSystem_controller, CLASS_Controller__Z4loopEV);
-	g_fmiCallbackFunctions->logger((void*) 1, g_fmiInstanceName, fmi2OK, "logAll", "called &periodic_taskg_WatertankSystem_controller__Z4loopEV\n");
+//	g_fmiCallbackFunctions->logger((void*) 1, g_fmiInstanceName, fmi2OK, "logAll", "called &periodic_taskg_WatertankSystem_controller__Z4loopEV\n");
 }
 
 
@@ -203,14 +203,14 @@ void fmuLoggerCache(void *componentEnvironment, fmi2String instanceName, fmi2Sta
 
 int main()
 {
-    fmi2CallbackFunctions callback={&fmuLoggerCache,NULL,NULL,NULL,NULL};
+	fmi2CallbackFunctions callback={&fmuLoggerCache,NULL,NULL,NULL,NULL};
     
-    fmi2Instantiate("this system",fmi2CoSimulation,"","",&callback,true,true);
-    systemInit();
-    syncInputsToModel();
+	fmi2Component comp=fmi2Instantiate("this system",fmi2CoSimulation,"","",&callback,true,true);
+	//	systemInit();
+	syncInputsToModel();
     
-    double stepSize = 0;
-    double totalTime = 10E9;
+	double stepSize = 0;
+	double totalTime = 1E3;
     
     
     for(int i = 0;  i < PERIODIC_GENERATED_COUNT; i++)
@@ -235,7 +235,7 @@ int main()
             }
     }
     printf("Done\n");
-  
+	fmi2FreeInstance(comp);
 }
 
 

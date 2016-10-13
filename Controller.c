@@ -34,64 +34,87 @@ static void Controller_free(struct Controller *this)
  --------------------------------- */
  
 
- static  TVP _Z17fieldInitializer2EV()	{
-/* Controller.vdmrt 25:15 */
- TVP ret_1 = vdmClone(newBool(false));
+static  TVP _Z17fieldInitializer2EV()	{
+	/* Controller.vdmrt 25:15 */
+	TVP ret_1 = newBool(false);
 
-return ret_1;
+	return ret_1;
 }
 
 
 
- static  TVP _Z17fieldInitializer1EV()	{
-/* Controller.vdmrt 24:15 */
- TVP ret_2 = vdmClone(newBool(true));
+static  TVP _Z17fieldInitializer1EV()	{
+	/* Controller.vdmrt 24:15 */
+	TVP ret_2 = newBool(true);
 
-return ret_2;
+	return ret_2;
 }
 
 
 /* Controller.vdmrt 29:8 */
- static  void _Z4loopEV(ControllerCLASS this)	{
+static  void _Z4loopEV(ControllerCLASS this)	{
 
- TVP TmpVar1 = _Z2IOEV(NULL);
+	// TVP TmpVar1 = _Z2IOEV(NULL);
 
- TVP TmpVar2 = _Z2IOEV(NULL);
+	// TVP TmpVar2 = _Z2IOEV(NULL);
 
- TVP TmpVar3 = _Z2IOEV(NULL);
-/* Controller.vdmrt 36:9 */
-const TVP level = CALL_FUNC(LevelSensor, LevelSensor, GET_FIELD_PTR(Controller, Controller, this, levelSensor), CLASS_LevelSensor__Z8getLevelEV);
-/* Controller.vdmrt 39:14 */
- TVP embeding_1 = newSeqVar(10, newChar('L'), newChar('e'), newChar('v'), newChar('e'), newChar('l'), newChar(' '), newChar('i'), newChar('s'), newChar(':'), newChar(' '))
-;
-/* Controller.vdmrt 39:5 */
-CALL_FUNC(IO, IO, TmpVar1, CLASS_IO__Z5printEU, embeding_1);
-/* Controller.vdmrt 39:28 */
-CALL_FUNC(IO, IO, TmpVar2, CLASS_IO__Z5printEU, level);
-/* Controller.vdmrt 39:54 */
- TVP embeding_2 = newSeqVar(1, newChar('\n'))
-;
-/* Controller.vdmrt 39:45 */
-CALL_FUNC(IO, IO, TmpVar3, CLASS_IO__Z5printEU, embeding_2);
-/* Controller.vdmrt 41:5 */
-if ( toBool(vdmGreaterOrEqual(level, CALL_FUNC(RealPort, RealPort, g_HardwareInterface_maxlevel, CLASS_RealPort__Z8getValueEV))) )
-	/* Controller.vdmrt 42:10 */
-	CALL_FUNC(ValveActuator, ValveActuator, GET_FIELD_PTR(Controller, Controller, this, valveActuator), CLASS_ValveActuator__Z8setValveEB, g_Controller_open);;
-/* Controller.vdmrt 44:5 */
-if ( toBool(vdmLessOrEqual(level, CALL_FUNC(RealPort, RealPort, g_HardwareInterface_minlevel, CLASS_RealPort__Z8getValueEV))) )
-	/* Controller.vdmrt 45:10 */
-	CALL_FUNC(ValveActuator, ValveActuator, GET_FIELD_PTR(Controller, Controller, this, valveActuator), CLASS_ValveActuator__Z8setValveEB, g_Controller_close);;
+	// TVP TmpVar3 = _Z2IOEV(NULL);
+	/* Controller.vdmrt 36:9 */
+	TVP h1 = GET_FIELD_PTR(Controller, Controller, this, levelSensor);
+	const TVP level = CALL_FUNC(LevelSensor, LevelSensor, h1, CLASS_LevelSensor__Z8getLevelEV);
+	vdmFree(h1);
+	/* Controller.vdmrt 39:14 */
+	// TVP embeding_1 = newSeqVar(10, newChar('L'), newChar('e'), newChar('v'), newChar('e'), newChar('l'), newChar(' '), newChar('i'), newChar('s'), newChar(':'), newChar(' '))
+	;
+	/* Controller.vdmrt 39:5 */
+	//CALL_FUNC(IO, IO, TmpVar1, CLASS_IO__Z5printEU, embeding_1);
+	/* Controller.vdmrt 39:28 */
+	//CALL_FUNC(IO, IO, TmpVar2, CLASS_IO__Z5printEU, level);
+	/* Controller.vdmrt 39:54 */
+	// TVP embeding_2 = newSeqVar(1, newChar('\n'))
+	;
+	/* Controller.vdmrt 39:45 */
+	//CALL_FUNC(IO, IO, TmpVar3, CLASS_IO__Z5printEU, embeding_2);
+	/* Controller.vdmrt 41:5 */
+	TVP h2=CALL_FUNC(RealPort, RealPort, g_HardwareInterface_maxlevel, CLASS_RealPort__Z8getValueEV);
+	TVP h3 = vdmGreaterOrEqual(level, h2);
+	if ( toBool(h3) )
+		{
+			/* Controller.vdmrt 42:10 */
+			TVP h7 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
+			CALL_FUNC(ValveActuator, ValveActuator, h7, CLASS_ValveActuator__Z8setValveEB, g_Controller_open);;
+
+			vdmFree(h7);
+		}
+	vdmFree(h2);
+	vdmFree(h3);
+
+	TVP h4 = CALL_FUNC(RealPort, RealPort, g_HardwareInterface_minlevel, CLASS_RealPort__Z8getValueEV);
+	TVP h5 = vdmLessOrEqual(level, h4);
+	/* Controller.vdmrt 44:5 */
+	if ( toBool(h5) )
+		{
+			/* Controller.vdmrt 45:10 */
+			TVP h6 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
+			CALL_FUNC(ValveActuator, ValveActuator, h6, CLASS_ValveActuator__Z8setValveEB, g_Controller_close);;
+			vdmFree(h6);
+		}
+
+	vdmFree(level);
+vdmFree(h4);
+vdmFree(h5);
 }
 
 
+void Controller_const_init()	{
 
- void Controller_const_init()	{
+	vdmFree(	g_Controller_open);	g_Controller_open=NULL;
+	g_Controller_open = _Z17fieldInitializer1EV();
 
-g_Controller_open = _Z17fieldInitializer1EV();
+	vdmFree(	g_Controller_close);	g_Controller_close=NULL;
+	g_Controller_close = _Z17fieldInitializer2EV();
 
-g_Controller_close = _Z17fieldInitializer2EV();
-
-return ;
+	return ;
 }
 
 
@@ -200,21 +223,21 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, Controller);
 }
-;
+
 /* Controller.vdmrt 19:20 */
  TVP field_tmp_1 = vdmClone(l);
 
-SET_FIELD_PTR(Controller, Controller, this, levelSensor, field_tmp_1);
+	SET_FIELD_PTR(Controller, Controller, this, levelSensor, field_tmp_1);
 
-vdmFree(field_tmp_1);
-/* Controller.vdmrt 20:20 */
- TVP field_tmp_2 = vdmClone(v);
+	vdmFree(field_tmp_1);
+	/* Controller.vdmrt 20:20 */
+	TVP field_tmp_2 = vdmClone(v);
 
-SET_FIELD_PTR(Controller, Controller, this, valveActuator, field_tmp_2);
+	SET_FIELD_PTR(Controller, Controller, this, valveActuator, field_tmp_2);
 
-vdmFree(field_tmp_2);
+	vdmFree(field_tmp_2);
 
-return __buf;
+	return __buf;
 }
 
 
@@ -231,7 +254,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, Controller);
 }
-;
+
 
 return __buf;
 }

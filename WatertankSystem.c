@@ -32,18 +32,18 @@ static void WatertankSystem_free(struct WatertankSystem *this)
  --------------------------------- */
  
 
- static  TVP _Z18fieldInitializer12EV()	{
-/* System.vdmrt 11:46 */
- TVP ret_18 = vdmClone(NULL);
+static  TVP _Z18fieldInitializer12EV()	{
+	/* System.vdmrt 11:46 */
+	TVP ret_18 = NULL;
 
-return ret_18;
+	return ret_18;
 }
 
 
 
- static  TVP _Z18fieldInitializer11EV()	{
-/* System.vdmrt 6:41 */
- TVP ret_19 = vdmClone(_Z17HardwareInterfaceEV(NULL));
+static  TVP _Z18fieldInitializer11EV()	{
+	/* System.vdmrt 6:41 */
+	TVP ret_19 = _Z17HardwareInterfaceEV(NULL);
 
 return ret_19;
 }
@@ -64,24 +64,26 @@ return ;
 
 
 
- void WatertankSystem_static_init()	{
+void WatertankSystem_static_init()	{
 
-g_WatertankSystem_hwi = _Z18fieldInitializer11EV();
+	vdmFree(g_WatertankSystem_hwi);g_WatertankSystem_hwi=NULL;
+	g_WatertankSystem_hwi = _Z18fieldInitializer11EV();
 
-g_WatertankSystem_controller = _Z18fieldInitializer12EV();
+	vdmFree(	g_WatertankSystem_controller );	g_WatertankSystem_controller=NULL;
+	g_WatertankSystem_controller = _Z18fieldInitializer12EV();
 
-return ;
+	return ;
 }
 
 
 
- void WatertankSystem_static_shutdown()	{
+void WatertankSystem_static_shutdown()	{
 
-vdmFree(g_WatertankSystem_hwi);
+	vdmFree(g_WatertankSystem_hwi);g_WatertankSystem_hwi=NULL;
 
-vdmFree(g_WatertankSystem_controller);
+	vdmFree(g_WatertankSystem_controller);g_WatertankSystem_controller=NULL;
 
-return ;
+	return ;
 }
 
 
@@ -147,27 +149,38 @@ static TVP new()
  
 
 /* System.vdmrt 16:8 */
- TVP _Z15WatertankSystemEV(WatertankSystemCLASS this)	{
+TVP _Z15WatertankSystemEV(WatertankSystemCLASS this)	{
 
- TVP __buf = NULL;
+	TVP __buf = NULL;
 
-if ( this == NULL )
+	if ( this == NULL )
 	
-	{
+		{
 
-__buf = new();
+			__buf = new();
 
-this = TO_CLASS_PTR(__buf, WatertankSystem);
-}
-;
-/* System.vdmrt 19:9 */
-const TVP levelSensor = _Z11LevelSensorE8CRealPort(NULL, GET_FIELD(HardwareInterface, HardwareInterface, vdmClone(g_WatertankSystem_hwi), level));
-/* System.vdmrt 20:13 */
-const TVP valveActuator = _Z13ValveActuatorE8CBoolPort(NULL, GET_FIELD(HardwareInterface, HardwareInterface, vdmClone(g_WatertankSystem_hwi), valveState));
-/* System.vdmrt 22:9 */
-g_WatertankSystem_controller = _Z10ControllerE11CLevelSensor13CValveActuator(NULL, levelSensor, valveActuator);
+			this = TO_CLASS_PTR(__buf, WatertankSystem);
+		}
+	;
 
-return __buf;
+
+	TVP h1 = vdmClone(g_WatertankSystem_hwi);
+	TVP h2 = GET_FIELD(HardwareInterface, HardwareInterface, h1, level);
+	TVP h3 = GET_FIELD(HardwareInterface, HardwareInterface, h1, valveState);
+	/* System.vdmrt 19:9 */
+	const TVP levelSensor = _Z11LevelSensorE8CRealPort(NULL, h2);
+	/* System.vdmrt 20:13 */
+	const TVP valveActuator = _Z13ValveActuatorE8CBoolPort(NULL, h3);
+	/* System.vdmrt 22:9 */
+	vdmFree(g_WatertankSystem_controller);
+	g_WatertankSystem_controller = _Z10ControllerE11CLevelSensor13CValveActuator(NULL, levelSensor, valveActuator);
+	vdmFree(levelSensor);
+	vdmFree(valveActuator);
+
+	vdmFree(h3);
+	vdmFree(h2);
+	vdmFree(h1);
+	return __buf;
 }
 
 

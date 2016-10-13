@@ -33,27 +33,29 @@ static void ValveActuator_free(struct ValveActuator *this)
  --------------------------------- */
  
 /* ValveActuator.vdmrt 13:8 */
- static  void _Z8setValveEB(ValveActuatorCLASS this, TVP value)	{
+static  void _Z8setValveEB(ValveActuatorCLASS this, TVP value)	{
 
- TVP TmpVar4 = _Z2IOEV(NULL);
+	//TVP TmpVar4 = _Z2IOEV(NULL);
 
- TVP TmpVar5 = _Z2IOEV(NULL);
+	//TVP TmpVar5 = _Z2IOEV(NULL);
 
- TVP TmpVar6 = _Z2IOEV(NULL);
-/* ValveActuator.vdmrt 16:14 */
- TVP embeding_3 = newSeqVar(21, newChar('V'), newChar('a'), newChar('l'), newChar('v'), newChar('e'), newChar(' '), newChar('s'), newChar('t'), newChar('a'), newChar('t'), newChar('e'), newChar(' '), newChar('c'), newChar('h'), newChar('a'), newChar('n'), newChar('g'), newChar('e'), newChar('d'), newChar(':'), newChar(' '))
-;
-/* ValveActuator.vdmrt 16:5 */
-CALL_FUNC(IO, IO, TmpVar4, CLASS_IO__Z5printEU, embeding_3);
-/* ValveActuator.vdmrt 16:39 */
-CALL_FUNC(IO, IO, TmpVar5, CLASS_IO__Z5printEU, value);
-/* ValveActuator.vdmrt 16:65 */
- TVP embeding_4 = newSeqVar(1, newChar('\n'))
-;
-/* ValveActuator.vdmrt 16:56 */
-CALL_FUNC(IO, IO, TmpVar6, CLASS_IO__Z5printEU, embeding_4);
-/* ValveActuator.vdmrt 17:9 */
-CALL_FUNC(BoolPort, BoolPort, GET_FIELD_PTR(ValveActuator, ValveActuator, this, port), CLASS_BoolPort__Z8setValueEB, value);
+	//TVP TmpVar6 = _Z2IOEV(NULL);
+	/* ValveActuator.vdmrt 16:14 */
+	//TVP embeding_3 = newSeqVar(21, newChar('V'), newChar('a'), newChar('l'), newChar('v'), newChar('e'), newChar(' '), newChar('s'), newChar('t'), newChar('a'), newChar('t'), newChar('e'), newChar(' '), newChar('c'), newChar('h'), newChar('a'), newChar('n'), newChar('g'), newChar('e'), newChar('d'), newChar(':'), newChar(' '))
+	;
+	/* ValveActuator.vdmrt 16:5 */
+	//CALL_FUNC(IO, IO, TmpVar4, CLASS_IO__Z5printEU, embeding_3);
+	/* ValveActuator.vdmrt 16:39 */
+	//CALL_FUNC(IO, IO, TmpVar5, CLASS_IO__Z5printEU, value);
+	/* ValveActuator.vdmrt 16:65 */
+	// TVP embeding_4 = newSeqVar(1, newChar('\n'))
+	;
+	/* ValveActuator.vdmrt 16:56 */
+	//CALL_FUNC(IO, IO, TmpVar6, CLASS_IO__Z5printEU, embeding_4);
+	/* ValveActuator.vdmrt 17:9 */
+	TVP h1 =  GET_FIELD_PTR(ValveActuator, ValveActuator, this, port);
+	CALL_FUNC(BoolPort, BoolPort,h1, CLASS_BoolPort__Z8setValueEB, value);
+	vdmFree(h1);
 }
 
 

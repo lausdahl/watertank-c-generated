@@ -34,49 +34,56 @@ static void HardwareInterface_free(struct HardwareInterface *this)
  --------------------------------- */
  
 
- static  TVP _Z17fieldInitializer6EV()	{
-/* HardwareInterface.vdmrt 18:37 */
- TVP ret_3 = vdmClone(_Z8BoolPortEB(NULL, newBool(false)));
-
-return ret_3;
+static  TVP _Z17fieldInitializer6EV()	{
+	/* HardwareInterface.vdmrt 18:37 */
+	TVP h1 = newBool(false);
+	TVP ret_3 = _Z8BoolPortEB(NULL, h1);
+	vdmFree(h1);
+	return ret_3;
 }
 
 
 
- static  TVP _Z17fieldInitializer5EV()	{
-/* HardwareInterface.vdmrt 13:32 */
- TVP ret_4 = vdmClone(_Z8RealPortER(NULL, newReal(0.0)));
-
-return ret_4;
+static  TVP _Z17fieldInitializer5EV()	{
+	/* HardwareInterface.vdmrt 13:32 */
+	TVP h1 = newReal(0.0);
+	TVP ret_4 = _Z8RealPortER(NULL, h1);
+	vdmFree(h1);
+	return ret_4;
 }
 
 
 
- static  TVP _Z17fieldInitializer4EV()	{
-/* HardwareInterface.vdmrt 8:34 */
- TVP ret_5 = vdmClone(_Z8RealPortER(NULL, newReal(2.0)));
-
-return ret_5;
+static  TVP _Z17fieldInitializer4EV()	{
+	/* HardwareInterface.vdmrt 8:34 */
+	TVP h1 = newReal(2.0);
+	TVP ret_5 = _Z8RealPortER(NULL,h1);
+	vdmFree(h1);
+	return ret_5;
 }
 
 
 
- static  TVP _Z17fieldInitializer3EV()	{
-/* HardwareInterface.vdmrt 6:34 */
- TVP ret_6 = vdmClone(_Z8RealPortER(NULL, newReal(1.0)));
-
-return ret_6;
+static  TVP _Z17fieldInitializer3EV()	{
+	/* HardwareInterface.vdmrt 6:34 */
+	TVP h1 = newReal(1.0);
+	TVP ret_6 = _Z8RealPortER(NULL, h1);
+	vdmFree(h1);
+	return ret_6;
 }
 
 
 
- void HardwareInterface_const_init()	{
+void HardwareInterface_const_init()	{
 
-g_HardwareInterface_minlevel = _Z17fieldInitializer3EV();
+	vdmFree(	g_HardwareInterface_minlevel);	g_HardwareInterface_minlevel=NULL;
 
-g_HardwareInterface_maxlevel = _Z17fieldInitializer4EV();
+	g_HardwareInterface_minlevel = _Z17fieldInitializer3EV();
 
-return ;
+	vdmFree(	g_HardwareInterface_maxlevel);	g_HardwareInterface_maxlevel=NULL;
+	g_HardwareInterface_maxlevel = _Z17fieldInitializer4EV();
+
+	return ;
 }
 
 
@@ -196,6 +203,6 @@ return __buf;
  --------------------------------- */
  
 // initialize globals - this is done last since they are declared in the header but uses init functions which are printet in any order
-	TVP g_HardwareInterface_minlevel =  NULL ;
-		TVP g_HardwareInterface_maxlevel =  NULL ;
+TVP g_HardwareInterface_minlevel =  NULL ;
+TVP g_HardwareInterface_maxlevel =  NULL ;
 			

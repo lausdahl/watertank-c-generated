@@ -33,11 +33,11 @@ static void RealPort_free(struct RealPort *this)
  --------------------------------- */
  
 
- static  TVP _Z17fieldInitializer9EV()	{
-/* Fmi.vdmrt 65:18 */
- TVP ret_12 = vdmClone(newReal(0.0));
+static  TVP _Z17fieldInitializer9EV()	{
+	/* Fmi.vdmrt 65:18 */
+	TVP ret_12 = newReal(0.0);
 
-return ret_12;
+	return ret_12;
 }
 
 
@@ -53,11 +53,11 @@ vdmFree(field_tmp_6);
 
 
 /* Fmi.vdmrt 74:12 */
- static  TVP _Z8getValueEV(RealPortCLASS this)	{
-/* Fmi.vdmrt 75:26 */
- TVP ret_13 = vdmClone(GET_FIELD_PTR(RealPort, RealPort, this, value));
-/* Fmi.vdmrt 75:19 */
-return ret_13;
+static  TVP _Z8getValueEV(RealPortCLASS this)	{
+	/* Fmi.vdmrt 75:26 */
+	TVP ret_13 = GET_FIELD_PTR(RealPort, RealPort, this, value);
+	/* Fmi.vdmrt 75:19 */
+	return ret_13;
 }
 
 
@@ -194,7 +194,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, RealPort);
 }
-;
+
 /* Fmi.vdmrt 69:18 */
 CALL_FUNC_PTR(RealPort, RealPort, this, CLASS_RealPort__Z8setValueER, v);
 
@@ -217,7 +217,7 @@ __buf = new();
 
 this = TO_CLASS_PTR(__buf, RealPort);
 }
-;
+
 
 _Z4PortEV(((PortCLASS) CLASS_CAST(this, RealPort, Port)));
 
