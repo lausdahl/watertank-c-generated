@@ -55,18 +55,18 @@ static void _Z4loopEV(ControllerCLASS this) {
 
 	// TVP TmpVar3 = _Z2IOEV(NULL);
 
-		if(this->m_Controller_levelSensor)
-		PORTB &= ~(1 << PINB4);
+	//	if(this->m_Controller_levelSensor)
+	//	PORTB &= ~(1 << PINB4);
 
 
 
 	/* Controller.vdmrt 36:9 */
-	TVP h1 = GET_FIELD_PTR2(Controller, Controller, this, levelSensor);
+	TVP h1 = GET_FIELD_PTR(Controller, Controller, this, levelSensor);
 
-	if(h1)
-	PORTB &= ~(1 << PINB3);
+//	if(h1)
+//	PORTB &= ~(1 << PINB3);
 	const TVP level = CALL_FUNC(LevelSensor, LevelSensor, h1, CLASS_LevelSensor__Z8getLevelEV);
-	PORTB &= ~(1 << PINB4);
+//	PORTB &= ~(1 << PINB4);
 	vdmFree(h1);
 
 	/* Controller.vdmrt 39:14 */
@@ -107,7 +107,7 @@ static void _Z4loopEV(ControllerCLASS this) {
 
 RealPortCLASS rp = cs->value;
 
-	TVP h4 = CALL_FUNC(RealPort, RealPort, g_HardwareInterface_minlevel, CLASS_RealPort__Z8getValueEV);
+	TVP h4 = newReal(2.0);//CALL_FUNC(RealPort, RealPort, g_HardwareInterface_minlevel, CLASS_RealPort__Z8getValueEV);
 	TVP h5 = vdmLessOrEqual(level, h4);
 	/* Controller.vdmrt 44:5 */
 	if ( toBool(h5) )

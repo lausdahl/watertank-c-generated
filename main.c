@@ -40,7 +40,7 @@ void periodic_taskg_WatertankSystem_controller__Z4loopEV()
 		//if(gggh1->type == VDM_CLASS)
 		//PORTB &= ~(1 << PINB3);
 	CALL_FUNC(Controller, Controller, g_WatertankSystem_controller, CLASS_Controller__Z4loopEV);
-	PORTB &= ~(1 << PINB2);
+//	PORTB &= ~(1 << PINB2);
 }
 
 
@@ -147,7 +147,14 @@ int main() {
 
 	    systemInit();
 	  //  syncInputsToModel();
-	    PORTB &= ~(1 << PINB0);
+	  //  PORTB &= ~(1 << PINB0);
+ PORTB &= ~(1 << PINB3);
+
+//while(true)
+//{
+//	threads[0].call();
+//}
+
 
 	    double stepSize = 0;
 	    double totalTime = 10E9;
@@ -165,19 +172,19 @@ int main() {
 	    stepSize = stepSize / 1E9;
 
 	    int i=0;
-	    PORTB &= ~(1 << PINB1);
+	  //  PORTB &= ~(1 << PINB1);
 	    for (double time =0; time < totalTime; time=time+stepSize) {
 
 	    	i++;
 	    	if(i==2)
 	    	{
-	    		PORTB &= ~(1 << PINB2);
+	    	//	PORTB &= ~(1 << PINB2);
 	    	}else if(i==3)
 	    	{
-	    		PORTB &= ~(1 << PINB3);
+	    	//	PORTB &= ~(1 << PINB3);
 	    	}else if(i==4)
 	    	{
-	    		PORTB &= ~(1 << PINB4);
+	    	//	PORTB &= ~(1 << PINB4);
 	    	}
 	    	vdmStep(time,stepSize);
 
