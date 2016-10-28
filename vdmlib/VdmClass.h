@@ -191,6 +191,6 @@ struct ClassType* newClassValue(int id, unsigned int* refs, freeVdmClassFunction
  * compare arguments. Techinically we wated: typeid(from)==typeid(to)
  * but this is not valid C. However it can be ifdeed for C++. But the name compare if ok
  */
-#define SAME_ARGS(x,y) #x==#y
+#define SAME_ARGS(x,y) 1//#x==#y
 
 #endif /* LIB_VDMCLASS_H_ */

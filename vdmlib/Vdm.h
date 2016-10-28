@@ -26,7 +26,7 @@
  *  Created on: Jan 19, 2016
  *      Author: kel
  */
-
+#include <avr/io.h>
 #ifndef LIB_VDM_H_
 #define LIB_VDM_H_
 
@@ -36,7 +36,7 @@
  *  but this is not appreciated in the testing framework
  */
 #ifndef FATAL_ERROR
-#define FATAL_ERROR(message) exit(EXIT_FAILURE)
+#define FATAL_ERROR(message) //exit(EXIT_FAILURE)
 #endif
 
 #include "TypedValue.h"

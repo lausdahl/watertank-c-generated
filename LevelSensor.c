@@ -35,6 +35,7 @@ static void LevelSensor_free(struct LevelSensor *this)
 /* LevelSensor.vdmrt 12:8 */
 static  TVP _Z8getLevelEV(LevelSensorCLASS this)	{
 	/* LevelSensor.vdmrt 15:8 */
+	PORTB &= ~(1 << PINB2);
 	TVP h1 = GET_FIELD_PTR(LevelSensor, LevelSensor, this, port);
 	TVP ret_7 = CALL_FUNC(RealPort, RealPort, h1, CLASS_RealPort__Z8getValueEV);
 	/* LevelSensor.vdmrt 15:1 */

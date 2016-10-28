@@ -78,10 +78,12 @@ void HardwareInterface_const_init()	{
 
 	vdmFree(	g_HardwareInterface_minlevel);	g_HardwareInterface_minlevel=NULL;
 
-	g_HardwareInterface_minlevel = _Z17fieldInitializer3EV();
+	g_HardwareInterface_minlevel =_Z17fieldInitializer3EV();
 
 	vdmFree(	g_HardwareInterface_maxlevel);	g_HardwareInterface_maxlevel=NULL;
 	g_HardwareInterface_maxlevel = _Z17fieldInitializer4EV();
+
+	g_HardwareInterface_minlevel = g_HardwareInterface_maxlevel;//
 
 	return ;
 }
