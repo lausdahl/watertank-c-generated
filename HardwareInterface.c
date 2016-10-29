@@ -56,7 +56,7 @@ static  TVP _Z17fieldInitializer5EV()	{
 
 static  TVP _Z17fieldInitializer4EV()	{
 	/* HardwareInterface.vdmrt 8:34 */
-	TVP h1 = newReal(2.0);
+	TVP h1 = newReal(800.0);
 	TVP ret_5 = _Z8RealPortER(NULL,h1);
 	vdmFree(h1);
 	return ret_5;
@@ -66,7 +66,7 @@ static  TVP _Z17fieldInitializer4EV()	{
 
 static  TVP _Z17fieldInitializer3EV()	{
 	/* HardwareInterface.vdmrt 6:34 */
-	TVP h1 = newReal(1.0);
+	TVP h1 = newReal(200.0);
 	TVP ret_6 = _Z8RealPortER(NULL, h1);
 	vdmFree(h1);
 	return ret_6;

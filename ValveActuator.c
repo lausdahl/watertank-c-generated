@@ -56,6 +56,18 @@ static  void _Z8setValveEB(ValveActuatorCLASS this, TVP value)	{
 	TVP h1 =  GET_FIELD_PTR(ValveActuator, ValveActuator, this, port);
 	CALL_FUNC(BoolPort, BoolPort,h1, CLASS_BoolPort__Z8setValueEB, value);
 	vdmFree(h1);
+
+	//lets set it for real here we use PORTB
+
+	if ( value->value.intVal )
+	{
+	PORTB &= ~(1 << PINB3);
+	}else
+	{
+	PORTB |= 1<<PINB3;
+	}
+
+	
 }
 
 

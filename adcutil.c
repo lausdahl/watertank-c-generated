@@ -8,7 +8,9 @@
 
 void InitADC() {
 	ADMUX = (1 << REFS0);                         // For Aref=AVcc;
-	ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); //Rrescalar div factor =128
+	ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) ;//| (1 << ADPS0); //Rrescalar div factor =128
+//ADCSRB=0;
+
 }
 
 uint16_t ReadADC(uint8_t ch) {

@@ -7,6 +7,9 @@
 
 #include <stdarg.h>
 
+#include "adcutil.h"
+
+
 #include "Vdm.h"
 
 #include "Controller.h"
@@ -142,52 +145,21 @@ void systemMain()
 
 int main() {
 	DDRB = 0xff;
+	PORTB = 0xff;
 
-		PORTB = 0xff;
+	InitADC();
 
-	    systemInit();
-	  //  syncInputsToModel();
-	  //  PORTB &= ~(1 << PINB0);
- PORTB &= ~(1 << PINB3);
+	systemInit();
+	
+	while(true)
+	{
+		threads[0].call();
 
-//while(true)
-//{
-//	threads[0].call();
-//}
+		PORTB |= (1 << PINB0);
+		_delay_ms(200);
+		PORTB &= ~(1 << PINB0);
+		_delay_ms(200);
+	}
 
-
-	    double stepSize = 0;
-	    double totalTime = 10E9;
-
-
-	    for(int i = 0;  i < PERIODIC_GENERATED_COUNT; i++)
-	    {
-	        if(stepSize < threads[i].period)
-	        {
-	            stepSize = threads[i].period;
-	        }
-	    }
-
-	    //convert to seconds
-	    stepSize = stepSize / 1E9;
-
-	    int i=0;
-	  //  PORTB &= ~(1 << PINB1);
-	    for (double time =0; time < totalTime; time=time+stepSize) {
-
-	    	i++;
-	    	if(i==2)
-	    	{
-	    	//	PORTB &= ~(1 << PINB2);
-	    	}else if(i==3)
-	    	{
-	    	//	PORTB &= ~(1 << PINB3);
-	    	}else if(i==4)
-	    	{
-	    	//	PORTB &= ~(1 << PINB4);
-	    	}
-	    	vdmStep(time,stepSize);
-
-	    }
 	return 0;
 }

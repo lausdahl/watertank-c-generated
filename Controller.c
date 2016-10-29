@@ -82,21 +82,22 @@ static void _Z4loopEV(ControllerCLASS this) {
 	/* Controller.vdmrt 39:45 */
 	//CALL_FUNC(IO, IO, TmpVar3, CLASS_IO__Z5printEU, embeding_2);
 	/* Controller.vdmrt 41:5 */
-	TVP h2=CALL_FUNC(RealPort, RealPort, g_HardwareInterface_maxlevel, CLASS_RealPort__Z8getValueEV);
+	TVP h2=newReal(800.0);//CALL_FUNC(RealPort, RealPort, g_HardwareInterface_maxlevel, CLASS_RealPort__Z8getValueEV);
 	TVP h3 = vdmGreaterOrEqual(level, h2);
 	if ( toBool(h3) )
 	{
 		/* Controller.vdmrt 42:10 */
-		TVP h7 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
+	//	TVP h7 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
 
 //struct ClassType* cs = h7->value.ptr;
 
 
 //LevelSensorCLASS ls = cs->value;
+	PORTB &= ~(1 << PINB3);
 
-		CALL_FUNC(ValveActuator, ValveActuator, h7, CLASS_ValveActuator__Z8setValveEB, g_Controller_open);;
+	//	CALL_FUNC(ValveActuator, ValveActuator, h7, CLASS_ValveActuator__Z8setValveEB, g_Controller_open);;
 
-		vdmFree(h7);
+	//	vdmFree(h7);
 	}
 	vdmFree(h2);
 	vdmFree(h3);
@@ -107,15 +108,16 @@ static void _Z4loopEV(ControllerCLASS this) {
 
 RealPortCLASS rp = cs->value;
 
-	TVP h4 = newReal(2.0);//CALL_FUNC(RealPort, RealPort, g_HardwareInterface_minlevel, CLASS_RealPort__Z8getValueEV);
+	TVP h4 = newReal(400.0);//CALL_FUNC(RealPort, RealPort, g_HardwareInterface_minlevel, CLASS_RealPort__Z8getValueEV);
 	TVP h5 = vdmLessOrEqual(level, h4);
 	/* Controller.vdmrt 44:5 */
 	if ( toBool(h5) )
 	{
+	PORTB |= 1<<PINB3;
 		/* Controller.vdmrt 45:10 */
-		TVP h6 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
-		CALL_FUNC(ValveActuator, ValveActuator, h6, CLASS_ValveActuator__Z8setValveEB, g_Controller_close);;
-		vdmFree(h6);
+	//	TVP h6 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
+	//	CALL_FUNC(ValveActuator, ValveActuator, h6, CLASS_ValveActuator__Z8setValveEB, g_Controller_close);;
+	//	vdmFree(h6);
 	}
 
 	vdmFree(level);

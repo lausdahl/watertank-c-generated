@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "adcutil.h"
 
 /* -------------------------------
  *
@@ -40,7 +41,14 @@ static  TVP _Z8getLevelEV(LevelSensorCLASS this)	{
 	TVP ret_7 = CALL_FUNC(RealPort, RealPort, h1, CLASS_RealPort__Z8getValueEV);
 	/* LevelSensor.vdmrt 15:1 */
 	vdmFree(h1);
-	return ret_7;
+
+	//lets connect the HW here ADC0 is the value we return
+	vdmFree(ret_7);
+
+uint16_t av = ReadADC(0);
+
+	return newReal((int16_t)av);
+	//return ret_7;
 }
 
 
