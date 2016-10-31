@@ -30,7 +30,7 @@ static void ValveActuator_free(struct ValveActuator* this)
  --------------------------------- */
 
 /* ValveActuator.vdmrt 13:8 */
-static void _Z8setValveEB(ValveActuatorCLASS this, TVP value)
+void _Z8setValveEB(ValveActuatorCLASS this, char value, char value2)
 {
 
     //TVP TmpVar4 = _Z2IOEV(NULL);
@@ -52,17 +52,19 @@ static void _Z8setValveEB(ValveActuatorCLASS this, TVP value)
     //CALL_FUNC(IO, IO, TmpVar6, CLASS_IO__Z5printEU, embeding_4);
     /* ValveActuator.vdmrt 17:9 */
     TVP h1 = GET_FIELD_PTR(ValveActuator, ValveActuator, this, port);
-    CALL_FUNC(BoolPort, BoolPort, h1, CLASS_BoolPort__Z8setValueEB, value);
+    CALL_FUNC(BoolPort, BoolPort, h1, CLASS_BoolPort__Z8setValueEB, value, value2);
     vdmFree(h1);
 
     //lets set it for real here we use PORTB
 
+/*
     if (value->value.intVal) {
         PORTB &= ~(1 << PINB3);
     }
     else {
         PORTB |= 1 << PINB3;
     }
+	*/
 }
 
 void ValveActuator_const_init()

@@ -49,6 +49,13 @@ static TVP _Z17fieldInitializer1EV()
 #define CLASS_CAST2(ptr, from, to) (((unsigned char*)ptr))
 #define GET_FIELD_PTR2(thisTypeName, fieldTypeName, ptr, fieldName) GET_STRUCT_FIELD(fieldTypeName, CLASS_CAST2(ptr, thisTypeName, fieldTypeName), struct TypedValue*, m_##fieldTypeName##_##fieldName)
 
+#define CLASS_CAST2(ptr,from,to) (((unsigned char*)ptr) + ( offsetof(struct from, _##to##_pVTable)))
+
+#define CALL_FUNC2(thisTypeName,funcTname,classValue,id, args... )     GET_VTABLE_FUNC( thisTypeName,funcTname,i,id)(i, ## args)
+
+
+//#define CALL_FUNC3(thisTypeName,funcTname,classValue,id, args... )     GET_VTABLE_FUNC( thisTypeName,funcTname,TO_CLASS_PTR(classValue,thisTypeName),id)(CLASS_CAST(TO_CLASS_PTR(classValue,thisTypeName),thisTypeName,funcTname), ## args)
+
 /* Controller.vdmrt 29:8 */
 static void _Z4loopEV(ControllerCLASS this)
 {
@@ -110,11 +117,30 @@ static void _Z4loopEV(ControllerCLASS this)
     TVP h5 = vdmLessOrEqual(level, h4);
     /* Controller.vdmrt 44:5 */
     if (toBool(h5)) {
-        PORTB |= 1 << PINB3;
-        /* Controller.vdmrt 45:10 */
+       
+
+         struct TypedValue* h6 = vdmClone((*( (struct TypedValue**) ( ((unsigned char*)(((unsigned char*)this) + (1?0: __builtin_offsetof (struct Controller, _Controller_pVTable)))) + __builtin_offsetof (struct Controller, m_Controller_valveActuator) ) )));
+  // struct ValveActuator* i = ((struct ValveActuator *) ( ((struct ClassType*)h6->value.ptr)->value));
+
+
+unsigned int off = __builtin_offsetof (struct ValveActuator, _ValveActuator_pVTable);
+					
+
+void* t = (((unsigned char*)((struct ValveActuator *) ( ((struct ClassType*)h6->value.ptr)->value))) + (1?0: off));
+
+void *(*foo)(void *, char, char) = (*( (struct VTable**) ( ((unsigned char*)((struct ValveActuator *) ( ((struct ClassType*)h6->value.ptr)->value))) + off ) ))[0].pFunc;
+//foo(t, 'a', 'b');
+ 
+ 
+  /* Controller.vdmrt 45:10 */
         //	TVP h6 = GET_FIELD_PTR(Controller, Controller, this, valveActuator);
-        //	CALL_FUNC(ValveActuator, ValveActuator, h6, CLASS_ValveActuator__Z8setValveEB, g_Controller_close);;
-        //	vdmFree(h6);
+        	CALL_FUNC(ValveActuator, ValveActuator, h6, CLASS_ValveActuator__Z8setValveEB, 'c', 'd'); //g_Controller_close);;
+        	vdmFree(h6);
+ 
+ 
+ 	
+		
+		//	vdmFree(h6);
     }
 
     vdmFree(level);

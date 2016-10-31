@@ -89,6 +89,7 @@ struct ValveActuator
 void ValveActuator_free_fields(ValveActuatorCLASS);
 ValveActuatorCLASS ValveActuator_Constructor(ValveActuatorCLASS);
 
+void _Z8setValveEB(ValveActuatorCLASS this, char value, char value2);
 
 
 #endif /* CLASSES_ValveActuator_H_ */
