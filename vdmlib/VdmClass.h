@@ -109,7 +109,7 @@ struct ClassType* newClassValue(int id, unsigned int* refs, freeVdmClassFunction
  * Cast to class pointer by moving it forward to the class specific VTable
  * Note that we only adjust the pointer if a subtype is given (i.e. not the type of it self)
  */
-#define CLASS_CAST(ptr,from,to) (((unsigned char*)ptr) + (SAME_ARGS(from,to)?0: offsetof(struct from, _##to##_pVTable)))
+#define CLASS_CAST(ptr,from,to) ((void*)(((unsigned char*)ptr) + (SAME_ARGS(from,to)?0: offsetof(struct from, _##to##_pVTable))))
 
 /*
  * Down-casting a super class pointer to the concrete class. i.e if A extends B and we have a 'b' pointer we can downcast it to an 'a'
